@@ -2,6 +2,7 @@ import Heading from "./components/Heading";
 import MainHeader from "./components/MainHeader";
 import Paragraph from "./components/Paragraph";
 import StdlyChat from "./components/StdlyChat";
+import HumanChat from "./components/HumanChat";
 
 function App() {
 
@@ -20,6 +21,13 @@ function App() {
         }
         />
 
+        <HumanChat 
+        humanChat={
+          <p>
+            That sounds great! But how do I actually use it?
+          </p>
+        }
+        /> 
         <Heading content="What is stdlib?" />
 
         <div>
