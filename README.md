@@ -26,10 +26,10 @@ http://localhost:5173/
 
 
 ## Technologies Used
--TypeScript
--React
--Tailwind CSS
--Shiki for code examples
+- TypeScript  
+- React  
+- Tailwind CSS  
+- Shiki for code examples
 
 ## Acknowledgments
 - Inspired by the official stdlib documentation
