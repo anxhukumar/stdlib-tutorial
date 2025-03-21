@@ -15,15 +15,17 @@ function App() {
 
   const [renderedShellHtml, setRenderedShellHtml] = useState<CodeHtml[]>([]);
   const [renderedJsHtml, setRenderedJsHtml] = useState<CodeHtml[]>([]);
-  const [renderedHighlightedHtml, setRenderedHighlightedHtml] = useState<CodeHtml[]>([]);
 
   const shellCommands: CodeHtml[] = [
     { id: 1, code: "npm install @stdlib/stdlib" },
     { id: 2, code: "npm install @stdlib/random-array" },
     { id: 3, code: "npm install -g @stdlib/stdlib" },
-    { id: 4, code: "stdlib help" },
+    { id: 4, code: `stdlib help` },
     { id: 5, code: "stdlib repl" },
-    { id: 6, code: "npm install @stdlib/dist-math-base-special-flat" }
+    { id: 6, code: `
+      In [1]: capitalize("apple")
+      Out[1]: 'Apple'
+      ` }
   ];
 
   const javaScriptCode: CodeHtml[] = [
@@ -36,31 +38,6 @@ function App() {
     { id: 4, code: `
       var output = bernoulli(6, 0.5);
       //OUTPUT: [ 0, 1, 0, 1, 0, 0 ]
-      ` },
-    { id: 5, code: "import linspace from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-base-linspace@esm/index.mjs';" },
-    { id: 6, 
-      code: 
-      `
-      const x = linspace( -10.0, 10.0, 100 );
-        for ( let i = 0; i < x.length; i++ ) {
-          console.log( 'x: %d, erf(x): %d', x[ i ], erf( x[ i ] ) );
-        }
-      ` 
-    }
-  ]
-
-  const htmlCode: CodeHtml[] = [
-    { id: 1, code: `
-      <script type="text/javascript"> 
-        src="/path/to/@stdlib/dist-math-base-special-flat/build/bundle.min.js">
-      </script>
-      ` },
-    { id: 2, code: `
-      <script type="text/javascript">
-        // If no recognized module system present, exposed to global scope:
-       	var erf = stdlib_math_base_special_flat.erf;
-        console.log( erf( 0.5 ) );
-      </script>
       ` }
   ]
 
@@ -71,7 +48,7 @@ function App() {
       for (let command of shellCommands) {
         const result = await codeToHtml(command.code, {
           lang: 'shellscript',
-          theme: 'rose-pine'
+          theme: 'gruvbox-dark-soft'
         });
         shellCommandsHtml.push({ id: command.id, code: result });
       }
@@ -90,21 +67,8 @@ function App() {
       setRenderedJsHtml(jsCodeHtml);
     }
     
-    const generateHtmlCode = async () => {
-      const highlightedHtmlCode: CodeHtml[] = [];
-      for (let item of htmlCode) {
-        const result = await codeToHtml(item.code, {
-          lang: 'html',
-          theme: 'slack-dark'
-        });
-        highlightedHtmlCode.push({ id: item.id, code: result });
-      }
-      setRenderedHighlightedHtml(highlightedHtmlCode);
-    }
-    
     generateShellCommands();
     generateJsCode();
-    generateHtmlCode();
   }, []);
 
   return (
@@ -191,7 +155,7 @@ function App() {
           text="STEP 1: Run the following command in your terminal" 
           />
           
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[0]?.code || ''}} />
+          <div className="w-110 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[0]?.code || ''}} />
          
          <br />
 
@@ -199,7 +163,7 @@ function App() {
           text="STEP 2: Import specific functionalities as per need"
           />
 
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[0]?.code || ''}} />
+          <div className="w-110 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[0]?.code || ''}} />
 
           <br />
 
@@ -207,7 +171,7 @@ function App() {
           text="STEP 3: Use the functionality"
           />
 
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[1]?.code || ''}} />
+          <div className="w-110 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[1]?.code || ''}} />
 
         </div>
 
@@ -224,10 +188,10 @@ function App() {
         <div>
           
           <Paragraph 
-          text="STEP 1: Run the following command in your terminal" 
+          text="STEP 1: Run the installation command with the specific package name that you want to download, in your terminal" 
           />
 
-         <div className="w-79 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[1]?.code || ''}} />
+         <div className="w-137 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[1]?.code || ''}} />
          
          <br />
 
@@ -235,7 +199,7 @@ function App() {
           text="STEP 2: Import specific functionalities as per need"
           />
 
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[2]?.code || ''}} />
+          <div className="w-137 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[2]?.code || ''}} />
 
           <br />
 
@@ -243,7 +207,7 @@ function App() {
           text="STEP 3: Use the functionality"
           />
 
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[3]?.code || ''}} />
+          <div className="w-137 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[3]?.code || ''}} />
 
 
         </div>
@@ -251,7 +215,7 @@ function App() {
         <HumanChat 
         humanChat={
           <p>
-            Stdly, in cases where I want to test a function or debug something without writing a full script, how can I do that?
+            Stdly, in cases where I want to test a function without writing a full script, how can I do that?
           </p>
         }
         />
@@ -259,7 +223,7 @@ function App() {
         <StdlyChat 
         stdlyChat={
         <p>
-          You can use the command line feature! It lets you test functions and run quick calculations without needing <br />  to write a full script. Just open your terminal and use the REPL (Read-Eval-Print Loop) to interact with stdlib directly.
+          You can use the command line feature! It lets you test functions and run quick calculations without needing <br />  to write a full script. Just open your terminal and use the REPL to interact with stdlib directly.
         </p>
         }
         />
@@ -272,7 +236,7 @@ function App() {
           text="STEP 1: Install stdlib globally" 
           />
 
-         <div className="w-70 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[2]?.code || ''}} />
+         <div className="w-85 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[2]?.code || ''}} />
          
          <br />
 
@@ -280,7 +244,7 @@ function App() {
           text="STEP 2: Check available commands"
           />
 
-         <div className="w-70 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[3]?.code || ''}} />
+         <div className="w-85 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[3]?.code || ''}} />
 
 
           <br />
@@ -289,114 +253,14 @@ function App() {
           text="STEP 3: Run the REPL"
           />
 
-         <div className="w-70 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[4]?.code || ''}} />
+         <div className="w-85 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[4]?.code || ''}} />
+
+         <div className="w-85 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[5]?.code || ''}} />
+
 
         
         </div>
 
-        <HumanChat
-        humanImgClass="mt-5" 
-        humanChat={
-          <p>
-            Okay, but what if I am working on a legacy project that doesn't support ES Modules or CommonJS,<br /> and I still need to use stdlib? What should I do then?
-          </p>
-        }
-        />
-
-        <StdlyChat
-        stdlyChat={
-        <p>
-          Ah! In that case, UMD can help!
-        </p>
-        }
-        />
-
-       <Heading content="Using UMD bundles" />
-      
-        <div>
-          
-          <Paragraph 
-          text="UMD (Universal Module Definition) allows you to use stdlib without worrying about module system compatibility." 
-          />
-
-          <br />
-
-          <Paragraph
-          text="STEP 1: Install the UMD package using npm"
-          />
-
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[5]?.code || ''}} />
-
-          <br />
-
-          <Paragraph
-          text="STEP 2: Add the bundle in your HTML file"
-          />
-
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedHighlightedHtml[0]?.code || ''}} />
-
-
-          <br />
-
-          <Paragraph
-          text="STEP 3: Access the functions from the global scope"
-          />
-
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedHighlightedHtml[1]?.code || ''}} />
-
-
-        </div>
-      
-        <HumanChat 
-        humanChat={
-          <p>
-            I want to quickly test stdlib functions in my project without installing anything. Is there a way to do that directly?
-          </p>
-        }
-        />
-      
-       <StdlyChat 
-        stdlyChat={
-        <p>
-          Absolutely! You can use stdlib directly without installing anything by using a CDN (Content Delivery Network)
-        </p>
-        }
-        />
-
-       <Heading content="Using stdlib via CDN" />
-
-        <div>
-          
-          <Paragraph 
-          text="This makes it a quick and convenient option, especially for testing and prototyping. However, one downside is that relying on a CDN means your code depends on an external network request, which could introduce latency." 
-          />
-         
-         <br />
-
-          <Paragraph
-          text="NOTE: You can find the CDN link of a package in its respective GitHub repository under the esm or deno branch."
-          />
-
-          <br />
-
-          <Paragraph
-          text="STEP 1: Import the required stdlib functions directly from the CDN"
-          />
-
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[4]?.code || ''}} />
-
-
-          <br />
-
-          <Paragraph
-          text="STEP 2: Use the functions as needed"
-          />
-
-          <div className="w-63 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[5]?.code || ''}} />
-
-
-        </div>
-      
       </div>
     
     </div>

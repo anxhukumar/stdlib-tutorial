@@ -7,8 +7,8 @@ function StdlyChat({stdlyChat, stdlyImgClass}: {stdlyChat: ReactNode, stdlyImgCl
       
       <img className={`size-60 -translate-x-16 translate-y-12 ${stdlyImgClass}`} src={stdly} alt="stdly cartoon character" />
 
-      <div className="bg-[#D9D9D9] h-fit p-4 rounded-r-4xl rounded-tl-4xl rounded-bl-xs -translate-x-32">
-        <div className="text-[#000000] font-manrope text-lg">{stdlyChat}</div>
+      <div className="bg-[#d9d9d9ef] h-fit p-1 px-3 rounded-r-4xl rounded-tl-4xl rounded-bl-xs -translate-x-32">
+        <div className="text-[#000000] font-manrope text-md font-semibold">{stdlyChat}</div>
       </div>
     
     </div>
