@@ -81,7 +81,7 @@ function App() {
         <StdlyChat 
         stdlyChat={
         <p>
-          Hi there! I'm Stdly, your guide to the stdlib library. Let's explore how it makes JavaScript more powerful!
+          Hi there! I am Stdly. I am your guide to the stdlib library. Let's explore together how to implement this library into your projects!
         </p>
         }
         />
@@ -91,13 +91,13 @@ function App() {
         <div>
           
           <Paragraph 
-          text="Stdlib is a library that adds advanced math, statistics, and scientific computing tools to JavaScript. JavaScript comes with only basic math functions, but this library gives you features similar to what other languages like Python, R, and MATLAB provide." 
+          text="Stdlib is a library that fills the gap of mathematical and statistical features in JavaScript and Node.js. When it comes to data processing and scientific computing, the languages that are commonly used are Python, R, MATLAB, etc." 
           />
           
           <br />
           
           <Paragraph
-          text="With stdlib, you can perform complex calculations, work with data efficiently, and even visualize results. It helps make JavaScript a great choice for scientific computing, data analysis, and more!"
+          text="Stdlib enables programmers to stick to JavaScript to perform these advanced numerical computations and makes it a reliable choice."
           />
         
         </div>
@@ -105,7 +105,7 @@ function App() {
         <HumanChat 
         humanChat={
           <p>
-            That sounds great! But how do I actually use it?
+            That sounds great, can you take me stepwise into the installation process?
           </p>
         }
         /> 
@@ -113,7 +113,7 @@ function App() {
         <StdlyChat 
         stdlyChat={
         <p>
-          There are two common ways to use it, you can either install the whole library or install individual packages.
+          Yeah sure! There are two common ways to use it, you can either install the whole library at once or install individual packages as per need.
         </p>
         }
         />
@@ -126,7 +126,7 @@ function App() {
           text="1. Install the entire library" 
           />
           <Paragraph
-          text="-This method is useful if you plan to use multiple features across different categories."
+          text="-This allows you to access all the features of this library."
           />
 
           <br />
@@ -135,14 +135,14 @@ function App() {
           text="2. Install individual packages"
           />
           <Paragraph
-          text="-This method is useful if you only need a few mathematical or utility functions from stdlib."
+          text="-This is preferred when you only want to implement a few features in your project."
           />
         </div>
 
         <StdlyChat 
         stdlyChat={
         <p>
-          If you don’t mind the size of the entire library and its dependencies, and you want access to all features <br /> without worrying about individual packages, you can download the full package.
+          If you don't care about the size of the packages and their dependencies, and you want to gain access to multiple features at once,  <br /> you can download the full library. 
         </p>
         }
         />
@@ -160,7 +160,7 @@ function App() {
          <br />
 
           <Paragraph
-          text="STEP 2: Import specific functionalities as per need"
+          text="STEP 2: Import specific functionalities as per your need"
           />
 
           <div className="w-110 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[0]?.code || ''}} />
@@ -178,7 +178,7 @@ function App() {
         <StdlyChat 
         stdlyChat={
         <p>
-          On the other hand, if you only need a few specific features and want to keep your application fast and lightweight,<br /> you can install just the packages you need instead of the whole library.
+          If you want your application to be lightweight and you prioritize fast performance, <br /> you can install specific packages that you need, instead of the whole library.
         </p>
         }
         />
@@ -188,7 +188,7 @@ function App() {
         <div>
           
           <Paragraph 
-          text="STEP 1: Run the installation command with the specific package name that you want to download, in your terminal" 
+          text="STEP 1: Run the installation command, with the specific package name that you want to download, in your terminal" 
           />
 
          <div className="w-137 mt-2" dangerouslySetInnerHTML={{ __html: renderedShellHtml[1]?.code || ''}} />
@@ -196,7 +196,7 @@ function App() {
          <br />
 
           <Paragraph
-          text="STEP 2: Import specific functionalities as per need"
+          text="STEP 2: Import specific functionalities as per your need"
           />
 
           <div className="w-137 mt-2" dangerouslySetInnerHTML={{ __html: renderedJsHtml[2]?.code || ''}} />
@@ -215,7 +215,7 @@ function App() {
         <HumanChat 
         humanChat={
           <p>
-            Stdly, in cases where I want to test a function without writing a full script, how can I do that?
+            Stdly, let's say I want to test a function but I don't want the hassle of writing a full script, what can I do then?
           </p>
         }
         />
@@ -223,7 +223,7 @@ function App() {
         <StdlyChat 
         stdlyChat={
         <p>
-          You can use the command line feature! It lets you test functions and run quick calculations without needing <br />  to write a full script. Just open your terminal and use the REPL to interact with stdlib directly.
+          You can use the command line feature directly, it lets you test a function without needing to write any script. <br /> Simply open your terminal and use the REPL.
         </p>
         }
         />
