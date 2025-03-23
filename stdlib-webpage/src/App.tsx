@@ -113,7 +113,7 @@ function App() {
         <StdlyChat 
         stdlyChat={
         <p>
-          Yeah sure! There are two common ways to use it, you can either install the whole library at once or install individual packages as per need.
+          Yeah sure! There are two common ways to use it, you can either install the whole library at once or install individual packages as per your need.
         </p>
         }
         />
@@ -142,7 +142,7 @@ function App() {
         <StdlyChat 
         stdlyChat={
         <p>
-          If you don't care about the size of the packages and their dependencies, and you want to gain access to multiple features at once,  <br /> you can download the full library. 
+          If you don't care about the size of the packages and their dependencies, and you want to gain access to multiple features <br /> at once, you can download the full library. 
         </p>
         }
         />
